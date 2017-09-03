@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <md-layout md-align="center">
     <h2>Next menu</h2>
     <div class="menu-options">
       <menu-option v-for="item in menu" :option="item" />
     </div>
-  </div>
+  </md-layout>
 </template>
 
 <style scoped>
