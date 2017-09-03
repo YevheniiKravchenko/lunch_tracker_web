@@ -41,10 +41,6 @@
     box-sizing: border-box;
   }
 
-  .links {
-    margin-left: 50px;
-  }
-
   a {
     padding: 2px 15px;
     color: white;
@@ -54,5 +50,11 @@
   a.router-link-active {
     font-weight: 800;
     color: #e91e63;
+  }
+
+  @media screen and (min-width: 740px) {
+    .links {
+      margin-left: 50px;
+    }
   }
 </style>

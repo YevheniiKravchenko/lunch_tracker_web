@@ -8,7 +8,6 @@
     margin: 1%;
     word-wrap: break-word;
     justify-content: center;
-    height: 100%;
     box-shadow: none;
   }
 </style>

@@ -1,9 +1,11 @@
 <template>
   <md-card class="card root">
-    <menu-item :title="option.main" />
-    <menu-item :title="option.side1" />
-    <menu-item :title="option.side2" />
-    <menu-item :title="option.salad" />
+    <md-layout md-column md-align="center">
+      <menu-item :title="option.main" />
+      <menu-item :title="option.side1" />
+      <menu-item :title="option.side2" />
+      <menu-item :title="option.salad" />
+    </md-layout>
     <div class="cost">{{option.cost}}/{{option.cost_without_main}} uah</div>
   </md-card>
 </template>

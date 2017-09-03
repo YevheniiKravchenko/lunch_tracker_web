@@ -1,5 +1,5 @@
 <template>
-  <md-layout md-align="center">
+  <md-layout md-column md-align="center">
     <h2>Next menu</h2>
     <div class="menu-options">
       <menu-option v-for="item in menu" :option="item" />
