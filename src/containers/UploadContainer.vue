@@ -7,21 +7,32 @@
         <md-input type="date" v-model="date"></md-input>
       </md-input-container>
       <md-input-container>
-        <md-file v-model="file" placeholder="Select file with next menu" accept="csv"></md-file>
+        <md-file @selected="setFile" placeholder="Select file with next menu"></md-file>
       </md-input-container>
-      <md-button class="md-raised md-accent upload-button">Upload menu</md-button>
+      <md-button class="md-raised md-accent upload-button" @click.native="upload">Upload menu</md-button>
     </md-layout>
   </md-layout>
 </template>
 
 <script>
+  // TODO: Move that to vuex
+  import { uploadMenu } from '../api';
+
   export default {
     name: 'upload-container',
     data() {
       return {
         date: new Date().toISOString().substr(0, 10),
-        file: '',
+        menu: '',
       };
+    },
+    methods: {
+      upload() {
+        uploadMenu(this.date, this.menu);
+      },
+      setFile(files) {
+        this.menu = files[0];
+      },
     },
   };
 </script>
