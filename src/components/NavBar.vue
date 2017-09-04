@@ -1,14 +1,14 @@
 <template>
   <md-layout md-tag="header" md-vertical-align="center">
-    <md-layout>
+    <md-layout class="nowrap">
       <span class="logo">Lunch Manager</span>
-      <span class="links">
+      <span class="links hide-small">
         <router-link to="/next">Next</router-link>
         <router-link to="/orders">Orders</router-link>
       </span>
     </md-layout>
 
-    <md-layout md-align="end">
+    <md-layout md-align="end" class="hide-small">
       <router-link to="/upload">Upload next menu</router-link>
       <a href="/logout" class="logout">Logout</a>
     </md-layout>
@@ -25,6 +25,8 @@
   header {
     margin: 0;
     height: 56px;
+    min-height: 56px;
+    max-height: 56px;
     padding: 0 16px 0 24px;
     background-color: #35495E;
     color: #ffffff;
@@ -52,9 +54,19 @@
     color: #e91e63;
   }
 
+  .nowrap {
+    flex-wrap: nowrap;
+  }
+
   @media screen and (min-width: 740px) {
     .links {
       margin-left: 50px;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .hide-small {
+      display: none;
     }
   }
 </style>
