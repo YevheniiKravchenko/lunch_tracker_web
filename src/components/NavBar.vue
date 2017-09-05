@@ -3,7 +3,7 @@
     <md-layout class="nowrap">
       <span class="logo">Lunch Manager</span>
       <span class="links hide-small">
-        <router-link to="/next">Next</router-link>
+        <router-link to="/menu">Menu</router-link>
         <router-link to="/orders">Orders</router-link>
       </span>
     </md-layout>

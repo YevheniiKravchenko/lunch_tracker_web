@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
+import camelize from 'camelize';
+import snakecase from 'snakecase-keys';
 
 Vue.use(VueResource);
 
@@ -8,16 +10,28 @@ Vue.http.headers.common.Authorization = 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpX
 
 /* eslint-disable */
 
+Vue.http.interceptors.push((request, next) => {
+  request.params = snakecase(request.params);
+  next();
+});
+
+const prepareResponse = response => response.json().then(json => camelize(json.data));
+
 export const uploadMenu = (date, menu) => {
   const data = new FormData();
-
-  debugger;
 
   data.append('date', date);
   data.append('menu', menu);
 
+  // TODO: handling errors
   Vue.http.post('load_menu', data).then(
     () => { console.log('s', arguments); },
     () => { console.log('e', arguments); }
   );
+};
+
+export const fetchMenu = date => {
+  return Vue.http.get('menu_options', {
+    params: { date },
+  }).then(prepareResponse);
 };

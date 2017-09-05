@@ -17,7 +17,7 @@
       };
     },
     components: {
-      'orders-table': OrdersTable,
+      OrdersTable,
     },
   };
 </script>

@@ -46,5 +46,6 @@
   .upload-button {
     width: 240px;
     height: 60px;
+    font-weight: 600;
   }
 </style>

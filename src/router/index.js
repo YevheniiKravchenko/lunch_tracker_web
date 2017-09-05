@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '@/components/Login';
-import NextContainer from '@/containers/NextContainer';
+import MenuContainer from '@/containers/MenuContainer';
 import OrdersContainer from '@/containers/OrdersContainer';
 import UploadContainer from '@/containers/UploadContainer';
 
@@ -15,13 +15,18 @@ export default new Router({
       component: Login,
     },
     {
-      path: '/next',
-      name: 'Next',
-      component: NextContainer,
+      path: '/menu',
+      redirect: '/menu/today',
+    },
+    {
+      path: '/menu/:day',
+      name: 'menu',
+      component: MenuContainer,
+      props: true,
     },
     {
       path: '/orders',
-      name: 'Orders',
+      name: 'orders',
       component: OrdersContainer,
     },
     {
@@ -29,5 +34,6 @@ export default new Router({
       name: 'Upload',
       component: UploadContainer,
     },
+    { path: '/', redirect: '/menu' },
   ],
 });

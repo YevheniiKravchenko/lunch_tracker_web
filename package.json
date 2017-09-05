@@ -11,10 +11,14 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "camelize": "^1.0.0",
+    "keymirror": "^0.1.1",
+    "snakecase-keys": "^1.1.0",
     "vue": "^2.3.3",
     "vue-material": "^0.7.4",
     "vue-resource": "^1.3.4",
-    "vue-router": "^2.3.1"
+    "vue-router": "^2.3.1",
+    "vuex": "^2.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
