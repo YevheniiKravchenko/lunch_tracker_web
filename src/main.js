@@ -3,6 +3,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VueMaterial from 'vue-material';
+import Notifications from 'vue-notification';
+import velocity from 'velocity-animate';
 
 import App from './App';
 import router from './router';
@@ -10,6 +12,7 @@ import configureStore from './store';
 
 Vue.use(VueMaterial);
 Vue.use(Vuex);
+Vue.use(Notifications, { velocity });
 
 Vue.config.productionTip = false;
 

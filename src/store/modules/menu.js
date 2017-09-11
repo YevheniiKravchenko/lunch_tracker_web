@@ -1,5 +1,6 @@
-import { fetchMenu as fetchMenuAPI } from '../../api';
+import { fetchMenu as fetchMenuAPI, uploadMenu as uploadMenuAPI } from '../../api';
 import * as types from '../actionTypes';
+
 
 // Initial state
 const initialState = {
@@ -19,6 +20,9 @@ const actions = {
         menu,
       });
     });
+  },
+  uploadMenu({ commit }, { date, menu }) {
+    return uploadMenuAPI(date, menu);
   },
 };
 

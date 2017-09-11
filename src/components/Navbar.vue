@@ -9,7 +9,7 @@
     </md-layout>
 
     <md-layout md-align="end" class="hide-small">
-      <router-link to="/upload">Upload next menu</router-link>
+      <router-link to="/upload">Upload menu</router-link>
       <a href="/logout" class="logout">Logout</a>
     </md-layout>
   </md-layout>

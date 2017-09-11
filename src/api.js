@@ -24,10 +24,7 @@ export const uploadMenu = (date, menu) => {
   data.append('menu', menu);
 
   // TODO: handling errors
-  Vue.http.post('load_menu', data).then(
-    () => { console.log('s', arguments); },
-    () => { console.log('e', arguments); }
-  );
+  return Vue.http.post('load_menu', data);
 };
 
 export const fetchMenu = date => {

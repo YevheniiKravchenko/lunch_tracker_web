@@ -1,6 +1,6 @@
 <template>
   <md-layout md-column md-align="center" md-vertical-align="center">
-    <h2>Upload</h2>
+    <h2>Upload menu</h2>
     <md-layout md-column class="container" md-vertical-align="center">
       <md-input-container>
         <label>Date</label>
@@ -9,14 +9,13 @@
       <md-input-container>
         <md-file @selected="setFile" placeholder="Select file with next menu"></md-file>
       </md-input-container>
-      <md-button class="md-raised md-accent upload-button" @click.native="upload">Upload menu</md-button>
+      <md-button class="md-raised md-accent upload-button" @click.native="upload">Upload</md-button>
     </md-layout>
   </md-layout>
 </template>
 
 <script>
-  // TODO: Move that to vuex
-  import { uploadMenu } from '../api';
+  import { mapActions } from 'vuex';
 
   export default {
     name: 'upload-container',
@@ -27,11 +26,30 @@
       };
     },
     methods: {
-      upload() {
-        uploadMenu(this.date, this.menu);
-      },
+      ...mapActions('menu', [
+        'uploadMenu',
+      ]),
       setFile(files) {
         this.menu = files[0];
+      },
+      upload() {
+        this.uploadMenu({
+          date: this.date,
+          menu: this.menu,
+        }).then(
+          () => this.$notify({
+            group: 'main',
+            type: 'success',
+            title: 'Success',
+            text: 'Menu successfully uploaded',
+          }),
+          () => this.$notify({
+            group: 'main',
+            type: 'error',
+            title: 'Error',
+            text: 'Error occured during upload',
+          }),
+        );
       },
     },
   };

@@ -11,16 +11,17 @@
         <md-bottom-bar-item md-icon="near_me" href="/#/upload">Upload</md-bottom-bar-item>
       </md-bottom-bar>
     </footer>
+    <notifications group="main" position="bottom right" animation-type="velocity" :speed="500" classes="notify-style" />
   </md-layout>
 </template>
 
 <script>
-  import NavBar from './components/NavBar';
+  import Navbar from './components/Navbar';
 
   export default {
     name: 'app',
     components: {
-      navbar: NavBar,
+      Navbar,
     },
   };
 </script>
@@ -30,6 +31,40 @@
 
 body {
   margin: 0;
+}
+
+.notifications {
+  width: 100% !important;
+  bottom: -5px !important;
+}
+
+.notify-style {
+  padding: 10px;
+
+  font-size: 12px;
+
+  color: #ffffff;
+  background: #44A4FC;
+  border-left: 5px solid #187FE7;
+  margin: 0;
+}
+
+.notify-style.warn {
+   background: #ffb648;
+   border-left-color: #f48a06;
+ }
+
+.notify-style.error {
+   background: #E54D42;
+   border-left-color: #B82E24;
+ }
+
+.notify-style.success {
+   background: #68CD86;
+   border-left-color: #42A85F;
+ }
+.notify-style .notification-title, .notify-style .notification-content {
+  font-size: 1.2em;
 }
 
 #app {
@@ -49,6 +84,15 @@ main {
 @media screen and (min-width: 640px) {
   footer {
     display: none;
+  }
+
+  .notifications {
+    width: 300px !important;
+    bottom: 0 !important;
+  }
+
+  .notify-style {
+    margin: 0 5px 5px;
   }
 
   main {
