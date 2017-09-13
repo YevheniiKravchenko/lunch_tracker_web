@@ -16,10 +16,10 @@
         <div class="back">
           <md-card class="card root">
             <md-layout md-align="center" md-vertical-align="center">
-              <md-button class="md-raised md-accent upload-button" @click.native="">
+              <md-button class="md-raised md-accent upload-button" @click.native="orderFull">
                 Full ({{option.cost}} uah)
               </md-button>
-              <md-button class="md-raised md-accent upload-button" @click.native="">
+              <md-button class="md-raised md-accent upload-button" @click.native="orderWithoutMain">
                 Without main ({{option.costWithoutMain}} uah)
               </md-button>
             </md-layout>
@@ -107,12 +107,41 @@
 </style>
 
 <script>
+  import { mapActions } from 'vuex';
   import MenuItem from './MenuItem';
 
   export default {
     name: 'menu-option',
     props: {
       option: Object,
+    },
+    methods: {
+      ...mapActions('orders', [
+        'postOrder',
+      ]),
+      orderFull() {
+        const { id, date } = this.option;
+        this.postOrder({
+          id,
+          date,
+        }).then(
+          () => this.$notify({
+            group: 'main',
+            type: 'success',
+            title: 'Success',
+            text: 'Order placed successfully',
+          }),
+          () => this.$notify({
+            group: 'main',
+            type: 'error',
+            title: 'Error',
+            text: 'Error occured during order',
+          }),
+        );
+      },
+      orderWithoutMain() {
+
+      },
     },
     components: {
       'menu-item': MenuItem,
