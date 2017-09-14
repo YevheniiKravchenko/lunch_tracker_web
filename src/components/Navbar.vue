@@ -10,7 +10,7 @@
 
     <md-layout md-align="end" class="hide-small">
       <router-link to="/upload">Upload menu</router-link>
-      <a href="/logout" class="logout">Logout</a>
+      <a class="logout" @click="$emit('onLogout')">Logout</a>
     </md-layout>
   </md-layout>
 </template>
@@ -56,6 +56,10 @@
 
   .nowrap {
     flex-wrap: nowrap;
+  }
+
+  .logout {
+    cursor: pointer;
   }
 
   @media screen and (min-width: 740px) {

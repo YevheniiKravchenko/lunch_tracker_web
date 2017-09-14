@@ -1,17 +1,15 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
-import Vuex from 'vuex';
 import VueMaterial from 'vue-material';
 import Notifications from 'vue-notification';
 import velocity from 'velocity-animate';
 
 import App from './App';
 import router from './router';
-import configureStore from './store';
+import store from './store';
 
 Vue.use(VueMaterial);
-Vue.use(Vuex);
 Vue.use(Notifications, { velocity });
 
 Vue.config.productionTip = false;
@@ -20,7 +18,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
-  store: configureStore(),
+  store,
   template: '<App/>',
   components: { App },
 });

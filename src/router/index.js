@@ -1,39 +1,59 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Login from '@/components/Login';
+import Login from '@/containers/Login';
 import MenuContainer from '@/containers/MenuContainer';
 import OrdersContainer from '@/containers/OrdersContainer';
 import UploadContainer from '@/containers/UploadContainer';
+import AuthLayout from '@/layouts/AuthLayout';
+import AppLayout from '@/layouts/AppLayout';
+
+import beforeEach from './beforeEach';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
-      path: '/login',
-      name: 'Login',
-      component: Login,
+      path: '/auth',
+      component: AuthLayout,
+      children: [
+        {
+          path: 'login',
+          name: 'Login',
+          component: Login,
+        },
+      ],
     },
     {
-      path: '/menu',
-      redirect: '/menu/today',
+      path: '/',
+      component: AppLayout,
+      children: [
+        {
+          path: 'menu',
+          redirect: 'menu/today',
+        },
+        {
+          path: 'menu/:day',
+          name: 'menu',
+          component: MenuContainer,
+          props: true,
+        },
+        {
+          path: 'orders',
+          name: 'orders',
+          component: OrdersContainer,
+        },
+        {
+          path: 'upload',
+          name: 'upload',
+          component: UploadContainer,
+        },
+        { path: '/', redirect: 'menu' },
+      ],
     },
-    {
-      path: '/menu/:day',
-      name: 'menu',
-      component: MenuContainer,
-      props: true,
-    },
-    {
-      path: '/orders',
-      name: 'orders',
-      component: OrdersContainer,
-    },
-    {
-      path: '/upload',
-      name: 'Upload',
-      component: UploadContainer,
-    },
-    { path: '/', redirect: '/menu' },
   ],
 });
+
+router.beforeEach(beforeEach);
+
+export default router;

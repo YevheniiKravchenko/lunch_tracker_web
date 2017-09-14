@@ -6,7 +6,6 @@ import snakecase from 'snakecase-keys';
 Vue.use(VueResource);
 
 Vue.http.options.root = 'http://localhost:4000/api';
-Vue.http.headers.common.Authorization = 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJVc2VyOjIiLCJleHAiOjE1MDc5MDM5MDAsImlhdCI6MTUwNTMxMTkwMCwiaXNzIjoiTHVuY2hUcmFja2VyIiwianRpIjoiNTJjNjgxNWItNWYwZi00YTlhLTk5NWMtOGI4MDIwNzZhNjM4IiwicGVtIjp7fSwic3ViIjoiVXNlcjoyIiwidHlwIjoiYWNjZXNzIn0.dxoT6LdWlHI9FfX_SeGlGU6VCjc07xAcdN8i5WNcAa2CJ7-hZ6dRrJ3V9wRvhbLJDVRmnMXwhdhSe9kziur6PA';
 
 /* eslint-disable */
 
@@ -20,6 +19,22 @@ Vue.http.interceptors.push((request, next) => {
 
 const prepareResponse = response => response.json().then(json => camelize(json.data));
 
+const prepareAuthResponse = response => prepareResponse(response).then(data => ({
+  user: data.user,
+  token: response.headers.get('Authorization'),
+}));
+
+
+/* AUTH API */
+export const login = user => {
+  return Vue.http.post('login', { user }).then(prepareAuthResponse);
+};
+
+export const logout = () => {
+  return Vue.http.get('logout').then(prepareResponse);
+};
+
+/* REGULAR API */
 export const uploadMenu = (date, menu) => {
   const data = new FormData();
 

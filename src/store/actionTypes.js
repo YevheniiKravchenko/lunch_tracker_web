@@ -6,3 +6,6 @@ export const MENU_UPLOAD_FAILED = 'MENU_UPLOAD_FAILED';
 export const POST_ORDER = 'POST_ORDER';
 export const ORDER_POSTED = 'ORDER_POSTED';
 export const ORDER_FAILED = 'ORDER_FAILED';
+
+export const USER_LOGGED_IN = 'USER_LOGGED_IN';
+export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';

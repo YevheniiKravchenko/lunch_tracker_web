@@ -72,7 +72,7 @@
       MenuOption,
     },
     mounted() {
-      this.fetchMenu(dates.today);
+      this.fetchMenu(dates[this.selectedMenu]);
     },
     beforeRouteUpdate(to, from, next) {
       this.selectedMenu = to.params.day;
