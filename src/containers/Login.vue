@@ -1,6 +1,6 @@
 <template>
   <md-layout md-align="center" >
-    <md-card class="card">
+    <md-card class="card" :class="{error: error}">
       <md-card-media>
         <h3>Lunch Manager</h3>
       </md-card-media>
@@ -42,6 +42,7 @@
           email: 'test_without_pass@yalantis.com',
           password: '123456',
         },
+        error: false,
       };
     },
     methods: {
@@ -49,14 +50,18 @@
         'login',
       ]),
       doLogin() {
+        this.error = false;
         this.login(this.credentials).then(
           () => this.$router.push('/'),
-          () => this.$notify({
-            group: 'main',
-            type: 'error',
-            title: 'Error',
-            text: 'Invalid credentials',
-          }),
+          () => {
+            this.$notify({
+              group: 'main',
+              type: 'error',
+              title: 'Error',
+              text: 'Invalid credentials',
+            });
+            this.error = true;
+          },
         );
       },
     },
