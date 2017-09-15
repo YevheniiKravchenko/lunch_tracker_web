@@ -1,3 +1,5 @@
+/* global process */
+
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 import camelize from 'camelize';
@@ -5,7 +7,7 @@ import snakecase from 'snakecase-keys';
 
 Vue.use(VueResource);
 
-Vue.http.options.root = 'http://localhost:4000/api';
+Vue.http.options.root = `${process.env.API_PATH}/api`;
 
 /* eslint-disable */
 
