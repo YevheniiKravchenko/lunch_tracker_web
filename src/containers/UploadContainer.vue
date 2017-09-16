@@ -1,5 +1,5 @@
 <template>
-  <md-layout md-column md-align="center" md-vertical-align="center">
+  <md-layout md-column md-align="center" md-vertical-align="center" class="root">
     <h2>Upload menu</h2>
     <md-layout md-column class="container" md-vertical-align="center">
       <md-input-container>
@@ -56,6 +56,10 @@
 </script>
 
 <style scoped>
+  .root {
+    height: 100%;
+  }
+
   .container {
     width: 90%;
     max-width: 600px;
