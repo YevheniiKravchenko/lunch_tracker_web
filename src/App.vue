@@ -78,4 +78,8 @@
       height: calc(100vh - 56px);
     }
   }
+
+  /*.md-input-container.md-has-password.md-input-focused .md-toggle-password{*/
+    /*margin-right: 15px;*/
+  /*}*/
 </style>

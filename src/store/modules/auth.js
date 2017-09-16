@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { login as loginAPI, logout as logoutAPI } from '../../api';
+import { login as loginAPI, logout as logoutAPI, register as registerAPI } from '../../api';
 import * as types from '../actionTypes';
 
 
@@ -26,6 +26,20 @@ const actions = {
         commit(types.USER_LOGGED_IN, { user, token });
       },
     );
+  },
+  register({ commit }, credentials) {
+    return new Promise((resolve, reject) => {
+      registerAPI(credentials).then(
+        ({ user, token }) => {
+          localStorage.setItem('token', token);
+          setToken(token);
+          commit(types.USER_LOGGED_IN, { user, token });
+
+          resolve();
+        },
+        ({ errors }) => reject(errors),
+      );
+    });
   },
   checkAuthentication({ commit }) {
     const token = localStorage.getItem('token');

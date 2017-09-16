@@ -11,13 +11,15 @@
           <md-input v-model="credentials.email" placeholder="Login"></md-input>
         </md-input-container>
 
-        <md-input-container>
+        <md-input-container md-has-password>
           <label>Password</label>
           <md-input v-model="credentials.password" type="password" placeholder="Password"></md-input>
         </md-input-container>
 
-        <md-layout md-align="center">
+        <md-layout md-align="center" md-row md-vertical-align="center">
           <md-button @click.native="doLogin">Login</md-button>
+          <div class="divider" />
+          <md-button @click.native="doRegister">Register</md-button>
         </md-layout>
       </form>
     </md-card>
@@ -33,6 +35,7 @@
 
 <script>
   import { mapActions } from 'vuex';
+  import capitalize from 'capitalize';
 
   export default {
     name: 'login',
@@ -48,6 +51,7 @@
     methods: {
       ...mapActions('auth', [
         'login',
+        'register',
       ]),
       doLogin() {
         this.error = false;
@@ -64,6 +68,27 @@
           },
         );
       },
+      doRegister() {
+        this.register(this.credentials).then(
+          () => {
+            this.$router.push('/');
+            this.$notify({
+              group: 'main',
+              type: 'success',
+              title: 'Success',
+              text: 'You\'ve successfully registered',
+            });
+          },
+          errors => {
+            this.$notify({
+              group: 'main',
+              type: 'error',
+              title: capitalize(Object.keys(errors)[0]),
+              text: capitalize(errors[Object.keys(errors)[0]][0]),
+            });
+          },
+        );
+      },
     },
   };
 </script>
@@ -74,6 +99,12 @@
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;
+  }
+
+  .divider {
+    height: 20px;
+    border-right: 1px solid #878686;
+    width: 1px;
   }
 
   @keyframes shake {

@@ -19,22 +19,41 @@ Vue.http.interceptors.push((request, next) => {
   next();
 });
 
-const prepareResponse = response => response.json().then(json => camelize(json.data));
+const prepareDataResponse = response => response.json().then(json => camelize(json.data));
 
-const prepareAuthResponse = response => prepareResponse(response).then(data => ({
+const prepareAuthResponse = response => prepareDataResponse(response).then(data => ({
   user: data.user,
   token: response.headers.get('Authorization'),
 }));
 
+const prepareErrorResponse = response => response.json().then(json => camelize(json));
 
 /* AUTH API */
 export const login = user => {
-  return Vue.http.post('login', { user }).then(prepareAuthResponse);
+  return doAuthRequest(Vue.http.post('login', { user }));
+};
+
+export const register = user => {
+  return doAuthRequest(Vue.http.post('users', { user }));
 };
 
 export const logout = () => {
-  return Vue.http.get('logout').then(prepareResponse);
+  return doRequest(Vue.http.get('logout'));
 };
+
+const doRequest = request => new Promise((resolve, reject) => {
+  request.then(
+    response => resolve(prepareDataResponse(response)),
+    response => reject(prepareErrorResponse(response)),
+  );
+});
+
+const doAuthRequest = request => new Promise((resolve, reject) => {
+  request.then(
+    response => prepareAuthResponse(response).then(data => resolve(data)),
+    response => prepareErrorResponse(response).then(error => reject(error)),
+  );
+});
 
 /* REGULAR API */
 export const uploadMenu = (date, menu) => {
@@ -48,16 +67,16 @@ export const uploadMenu = (date, menu) => {
 };
 
 export const fetchMenu = date => {
-  return Vue.http.get('menu_options', {
+  return doRequest(Vue.http.get('menu_options', {
     params: { date },
-  }).then(prepareResponse);
+  }));
 };
 
 export const postOrder = ({ id, date }) => {
-  return Vue.http.post('orders', {
+  return doRequest(Vue.http.post('orders', {
     order: {
       menuOptionId: id,
       date,
     },
-  }).then(prepareResponse);
+  }));
 };
