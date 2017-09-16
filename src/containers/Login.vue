@@ -69,6 +69,7 @@
         );
       },
       doRegister() {
+        this.error = false;
         this.register(this.credentials).then(
           () => {
             this.$router.push('/');
@@ -86,6 +87,7 @@
               title: capitalize(Object.keys(errors)[0]),
               text: capitalize(errors[Object.keys(errors)[0]][0]),
             });
+            this.error = true;
           },
         );
       },

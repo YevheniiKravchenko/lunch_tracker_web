@@ -79,6 +79,10 @@
     }
   }
 
+  .nowrap {
+    flex-wrap: nowrap;
+  }
+
   /*.md-input-container.md-has-password.md-input-focused .md-toggle-password{*/
     /*margin-right: 15px;*/
   /*}*/

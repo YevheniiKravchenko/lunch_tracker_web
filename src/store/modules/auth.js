@@ -1,5 +1,10 @@
 import Vue from 'vue';
-import { login as loginAPI, logout as logoutAPI, register as registerAPI } from '../../api';
+import {
+  login as loginAPI,
+  logout as logoutAPI,
+  register as registerAPI,
+  fetchProfile as fetchProfileAPI,
+} from '../../api';
 import * as types from '../actionTypes';
 
 
@@ -47,6 +52,7 @@ const actions = {
     if (token) {
       setToken(token);
       commit(types.USER_LOGGED_IN, { token });
+      fetchProfileAPI().then(user => commit(types.PROFILE_FETCHED, user));
     }
   },
   logout({ commit }) {
@@ -66,8 +72,13 @@ const mutations = {
     state.token = token;
     state.isAuthenticated = true;
   },
+  [types.PROFILE_FETCHED](state, user) {
+    state.user = user;
+  },
   [types.USER_LOGGED_OUT](state) {
-    Object.assign(state, initialState);
+    state.user = null;
+    state.token = null;
+    state.isAuthenticated = false;
   },
 };
 

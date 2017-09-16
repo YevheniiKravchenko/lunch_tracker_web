@@ -8,9 +8,17 @@
       </span>
     </md-layout>
 
-    <md-layout md-align="end" class="hide-small">
+    <md-layout md-align="end" class="hide-small" md-vertical-align="center">
       <router-link to="/upload">Upload menu</router-link>
-      <a class="logout" @click="$emit('onLogout')">Logout</a>
+      <md-menu md-offset-y="60">
+        <md-button md-menu-trigger>{{profileMenuLabel}}</md-button>
+
+        <md-menu-content>
+          <md-menu-item>Profile</md-menu-item>
+          <md-menu-item>My orders</md-menu-item>
+          <md-menu-item @click.native="$emit('onLogout')">Logout</md-menu-item>
+        </md-menu-content>
+      </md-menu>
     </md-layout>
   </md-layout>
 </template>
@@ -18,6 +26,7 @@
 <script>
   export default {
     name: 'navbar',
+    props: ['profileMenuLabel'],
   };
 </script>
 
@@ -52,14 +61,6 @@
   a.router-link-active {
     font-weight: 800;
     color: #e91e63;
-  }
-
-  .nowrap {
-    flex-wrap: nowrap;
-  }
-
-  .logout {
-    cursor: pointer;
   }
 
   @media screen and (min-width: 740px) {

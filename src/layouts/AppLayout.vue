@@ -1,6 +1,6 @@
 <template>
   <md-layout md-column id="app">
-    <navbar @onLogout="doLogout" />
+    <navbar :profileMenuLabel="profileMenuLabel" @onLogout="doLogout" />
     <main>
       <router-view></router-view>
     </main>
@@ -15,11 +15,19 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex';
   import Navbar from '../components/Navbar';
 
   export default {
     name: 'app-layout',
+    computed: {
+      ...mapGetters('auth', {
+        user: 'getUser',
+      }),
+      profileMenuLabel() {
+        return this.user && this.user.name ? this.user.name : 'My Profile';
+      },
+    },
     components: {
       Navbar,
     },

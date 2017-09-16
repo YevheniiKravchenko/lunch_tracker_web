@@ -28,19 +28,6 @@ const prepareAuthResponse = response => prepareDataResponse(response).then(data 
 
 const prepareErrorResponse = response => response.json().then(json => camelize(json));
 
-/* AUTH API */
-export const login = user => {
-  return doAuthRequest(Vue.http.post('login', { user }));
-};
-
-export const register = user => {
-  return doAuthRequest(Vue.http.post('users', { user }));
-};
-
-export const logout = () => {
-  return doRequest(Vue.http.get('logout'));
-};
-
 const doRequest = request => new Promise((resolve, reject) => {
   request.then(
     response => resolve(prepareDataResponse(response)),
@@ -55,7 +42,25 @@ const doAuthRequest = request => new Promise((resolve, reject) => {
   );
 });
 
+
+/* AUTH API */
+export const login = user => {
+  return doAuthRequest(Vue.http.post('login', { user }));
+};
+
+export const register = user => {
+  return doAuthRequest(Vue.http.post('users', { user }));
+};
+
+export const logout = () => {
+  return doRequest(Vue.http.get('logout'));
+};
+
 /* REGULAR API */
+export const fetchProfile = () => {
+  return doRequest(Vue.http.get('profile'));
+};
+
 export const uploadMenu = (date, menu) => {
   const data = new FormData();
 
