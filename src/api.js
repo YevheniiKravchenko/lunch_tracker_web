@@ -49,7 +49,7 @@ export const login = user => {
 };
 
 export const register = user => {
-  return doAuthRequest(Vue.http.post('users', { user }));
+  return doAuthRequest(Vue.http.post('register', { user }));
 };
 
 export const logout = () => {
