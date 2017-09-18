@@ -61,6 +61,10 @@ export const fetchProfile = () => {
   return doRequest(Vue.http.get('profile'));
 };
 
+export const updateProfile = user => {
+  return doRequest(Vue.http.post('profile', { user }));
+};
+
 export const uploadMenu = (date, menu) => {
   const data = new FormData();
 

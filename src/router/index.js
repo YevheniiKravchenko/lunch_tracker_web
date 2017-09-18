@@ -4,6 +4,8 @@ import Login from '@/containers/Login';
 import MenuContainer from '@/containers/MenuContainer';
 import OrdersContainer from '@/containers/OrdersContainer';
 import UploadContainer from '@/containers/UploadContainer';
+import ProfileContainer from '@/containers/ProfileContainer';
+import MyOrdersContainer from '@/containers/MyOrdersContainer';
 import AuthLayout from '@/layouts/AuthLayout';
 import AppLayout from '@/layouts/AppLayout';
 
@@ -47,6 +49,16 @@ const router = new Router({
           path: 'upload',
           name: 'upload',
           component: UploadContainer,
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: ProfileContainer,
+        },
+        {
+          path: 'my-orders',
+          name: 'myOrders',
+          component: MyOrdersContainer,
         },
         { path: '/', redirect: 'menu' },
       ],

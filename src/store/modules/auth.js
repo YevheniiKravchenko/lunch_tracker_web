@@ -4,6 +4,7 @@ import {
   logout as logoutAPI,
   register as registerAPI,
   fetchProfile as fetchProfileAPI,
+  updateProfile as updateProfileAPI,
 } from '../../api';
 import * as types from '../actionTypes';
 
@@ -64,6 +65,13 @@ const actions = {
       },
     );
   },
+  updateProfile({ commit }, user) {
+    return updateProfileAPI(user).then(
+      updatedUser => {
+        commit(types.PROFILE_UPDATED, updatedUser);
+      },
+    );
+  },
 };
 
 const mutations = {
@@ -79,6 +87,9 @@ const mutations = {
     state.user = null;
     state.token = null;
     state.isAuthenticated = false;
+  },
+  [types.PROFILE_UPDATED](state, user) {
+    state.user = user;
   },
 };
 
