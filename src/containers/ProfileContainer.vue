@@ -7,7 +7,7 @@
         <md-input class="md-input" type="text" v-model="name" v-validate data-vv-rules="required" data-vv-name="name" />
         <span class="md-error">{{errors.first('name')}}</span>
       </md-input-container>
-      <md-input-container :class="{'md-input-invalid': errors.has('name')}">
+      <md-input-container :class="{'md-input-invalid': errors.has('email')}">
         <label>Email</label>
         <md-input class="md-input" type="text" v-model="email" v-validate data-vv-rules="required|email" data-vv-name="email" />
         <span class="md-error">{{errors.first('email')}}</span>
