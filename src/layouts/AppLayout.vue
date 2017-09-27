@@ -8,7 +8,7 @@
       <md-bottom-bar>
         <md-bottom-bar-item md-icon="history" href="/#/next">Menu</md-bottom-bar-item>
         <md-bottom-bar-item md-icon="favorite" href="/#/orders">Orders</md-bottom-bar-item>
-        <md-bottom-bar-item md-icon="near_me" href="/#/upload">Upload</md-bottom-bar-item>
+        <md-bottom-bar-item md-icon="near_me" href="/#/upload/menu">Upload</md-bottom-bar-item>
       </md-bottom-bar>
     </footer>
   </md-layout>

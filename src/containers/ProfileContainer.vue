@@ -19,9 +19,11 @@
 
 <script>
   import { mapGetters, mapActions } from 'vuex';
+  import notificationsMixin from '../mixins/notificationsMixin';
 
   export default {
     name: 'profile-container',
+    mixins: [notificationsMixin],
     data() {
       return {
         name: '',
@@ -45,12 +47,7 @@
       save() {
         const { name, email } = this;
         this.updateProfile({ name, email }).then(
-          () => this.$notify({
-            group: 'main',
-            type: 'success',
-            title: 'Success',
-            text: 'Profile updated',
-          }),
+          () => this.notifySuccess('Profile updated'),
         );
       },
       updateData() {

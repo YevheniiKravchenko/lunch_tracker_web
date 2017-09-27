@@ -1,4 +1,9 @@
-import { fetchMenu as fetchMenuAPI, uploadMenu as uploadMenuAPI } from '../../api';
+import {
+  fetchMenu as fetchMenuAPI,
+  uploadMenu as uploadMenuAPI,
+  uploadCategories as uploadCategoriesAPI,
+  uploadDishes as uploadDishesAPI,
+} from '../../api';
 import * as types from '../actionTypes';
 
 
@@ -23,6 +28,12 @@ const actions = {
   },
   uploadMenu({ commit }, { date, menu }) {
     return uploadMenuAPI(date, menu);
+  },
+  uploadCategories({ commit }, categories) {
+    return uploadCategoriesAPI(categories);
+  },
+  uploadDishes({ commit }, dishes) {
+    return uploadDishesAPI(dishes);
   },
 };
 

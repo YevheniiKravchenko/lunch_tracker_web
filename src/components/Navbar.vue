@@ -9,13 +9,14 @@
     </md-layout>
 
     <md-layout md-align="end" class="hide-small" md-vertical-align="center">
-      <router-link to="/upload">Upload menu</router-link>
+      <router-link to="/upload/menu">Upload menu</router-link>
       <md-menu md-direction="bottom left" md-offset-y="60">
         <md-button md-menu-trigger>{{profileMenuLabel}}</md-button>
 
         <md-menu-content>
           <md-menu-item @click.native="goTo('/profile')">Profile</md-menu-item>
           <md-menu-item @click.native="goTo('/my-orders')">My orders</md-menu-item>
+          <md-menu-item @click.native="goTo('/upload/dishes')">Upload dishes</md-menu-item>
           <md-menu-item @click.native="$emit('onLogout')">Logout</md-menu-item>
         </md-menu-content>
       </md-menu>

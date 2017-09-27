@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import Login from '@/containers/Login';
 import MenuContainer from '@/containers/MenuContainer';
 import OrdersContainer from '@/containers/OrdersContainer';
-import UploadContainer from '@/containers/UploadContainer';
+import UploadMenuContainer from '@/containers/UploadMenuContainer';
+import UploadDishesContainer from '@/containers/UploadDishesContainer';
 import ProfileContainer from '@/containers/ProfileContainer';
 import MyOrdersContainer from '@/containers/MyOrdersContainer';
 import AuthLayout from '@/layouts/AuthLayout';
@@ -46,9 +47,14 @@ const router = new Router({
           component: OrdersContainer,
         },
         {
-          path: 'upload',
-          name: 'upload',
-          component: UploadContainer,
+          path: 'upload/menu',
+          name: 'uploadMenu',
+          component: UploadMenuContainer,
+        },
+        {
+          path: 'upload/dishes',
+          name: 'uploadDishes',
+          component: UploadDishesContainer,
         },
         {
           path: 'profile',

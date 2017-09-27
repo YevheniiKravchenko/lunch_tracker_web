@@ -36,9 +36,11 @@
 <script>
   import { mapActions } from 'vuex';
   import capitalize from 'capitalize';
+  import notificationsMixin from '../mixins/notificationsMixin';
 
   export default {
     name: 'login',
+    mixins: [notificationsMixin],
     data() {
       return {
         credentials: {
@@ -73,12 +75,7 @@
         this.register(this.credentials).then(
           () => {
             this.$router.push('/');
-            this.$notify({
-              group: 'main',
-              type: 'success',
-              title: 'Success',
-              text: 'You\'ve successfully registered',
-            });
+            this.notifySuccess('You\'ve successfully registered');
           },
           errors => {
             this.$notify({

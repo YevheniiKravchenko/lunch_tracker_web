@@ -16,9 +16,11 @@
 
 <script>
   import { mapActions } from 'vuex';
+  import notificationsMixin from '../mixins/notificationsMixin';
 
   export default {
-    name: 'upload-container',
+    name: 'upload-menu-container',
+    mixins: [notificationsMixin],
     data() {
       return {
         date: new Date().toISOString().substr(0, 10),
@@ -37,18 +39,8 @@
           date: this.date,
           menu: this.menu,
         }).then(
-          () => this.$notify({
-            group: 'main',
-            type: 'success',
-            title: 'Success',
-            text: 'Menu successfully uploaded',
-          }),
-          () => this.$notify({
-            group: 'main',
-            type: 'error',
-            title: 'Error',
-            text: 'Error occured during upload',
-          }),
+          () => this.notifySuccess('Menu successfully uploaded'),
+          () => this.notifyError('Error occured during upload'),
         );
       },
     },

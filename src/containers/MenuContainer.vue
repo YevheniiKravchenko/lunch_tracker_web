@@ -6,7 +6,7 @@
       )</h2>
     <h3 v-if="!menu.length">There is no uploaded menu for {{selectedMenu}}</h3>
     <div class="menu-options">
-      <menu-option v-for="item in menu" :option="item" />
+      <menu-option v-for="item in menu" :option="item" :key="item.main" />
     </div>
   </md-layout>
 </template>

@@ -72,7 +72,23 @@ export const uploadMenu = (date, menu) => {
   data.append('menu', menu);
 
   // TODO: handling errors
-  return Vue.http.post('load_menu', data);
+  return Vue.http.post('upload_day_menu', data);
+};
+
+export const uploadCategories = categories => {
+  const data = new FormData();
+
+  data.append('categories', categories);
+
+  return Vue.http.post('upload_categories', data);
+};
+
+export const uploadDishes = dishes => {
+  const data = new FormData();
+
+  data.append('dishes', dishes);
+
+  return Vue.http.post('upload_dishes', data);
 };
 
 export const fetchMenu = date => {
